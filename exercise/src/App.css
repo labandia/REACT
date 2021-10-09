@@ -1,0 +1,12 @@
+*{
+  font-family: 'Nunito';
+  margin: 0;
+  padding: 0;
+  background-color: #222;
+}
+
+body{
+  height: 100vh;
+  line-height: 1.6;
+  font-size: 1.125rem;
+}
