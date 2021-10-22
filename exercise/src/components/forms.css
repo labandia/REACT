@@ -1,0 +1,122 @@
+.contain{
+    display: flex;
+    gap: 1em;
+    align-items: flex-start;
+}
+
+
+form{
+    width: 800px;
+    height: 350px;
+    position: relative;
+    display: block;
+    background-color: rgb(54, 54, 54);
+    padding: 2em;
+    position: relative;
+    border-radius: 5px;
+}
+
+form label{
+    color: #fff;
+    background-color: none;
+}
+
+.inputbox{
+    background-color: transparent;
+    margin-bottom: 1em;
+}
+
+label{
+    background-color: transparent;
+    font-size: 1rem;
+}
+
+input{
+    width: 100%;
+    padding: 1em;
+    border: none;
+    outline: none;
+    margin-top: .5em;
+    font-size: 1rem;
+    color: #fff;
+}
+
+button{
+    width: 100%;
+    padding: .8em 1.5em;
+    font-weight: bold;
+    border: none;
+    background-color: rgb(22, 172, 84);
+    font-family: "Nunito";
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 25px;
+    margin-top: 1em;
+}
+
+
+
+
+.table{
+    width: 100%;
+    background: none;
+    color: rgb(202, 202, 202);
+}
+
+.table .htable{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em 1.2em;
+    background: rgb(54, 54, 54);
+}
+
+.table .htable p{
+    color: rgb(45, 214, 115);
+    font-weight: 600;
+}
+
+.table .htable h3, p{
+    background: none;
+    margin: 0;
+}
+
+.table .bodytable{
+    background: rgb(83, 83, 83);
+    overflow-y: scroll;
+    max-height: 280px;
+}
+
+
+.user{
+    display: flex;
+    background: none;
+    justify-content: space-between;
+    padding: 1em;
+    transition: all .2s;
+    cursor: pointer;
+    border-bottom: 1px solid rgb(54, 54, 54);
+}
+
+.user:hover{
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+}
+
+.user .huser{
+    gap: 1em;
+    display: flex;
+    background: none;
+}
+
+.user .actions{
+    display: flex;
+    gap: 1em;
+    background: none;
+}
+
+.user .actions i{
+    background: none;
+    margin-top: 4px;
+}
