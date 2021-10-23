@@ -1,28 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
-import model2 from '../images/model-y.jpg'
 import Button from '@mui/material/Button';
+import {useSelector} from 'react-redux';
 
 
-function home() {
-
+export function Home() {
+    const getcar = useSelector((state)=> state.cars.cars);
+    console.log(getcar[0]);
+   
 
     return (
         <Container>
             <Textwrap>
-                <h1>Tesla Model X</h1>
-                <p>Order Online for Touchless Delivery</p>
+                <h1>{getcar[0].title}</h1>
+                <p>{getcar[0].description}</p>
                 <ButtonWrap>
                     <Custombutton variant="contained">Custom order</Custombutton>
                     <Custombutton variant="contained" style={{background: "#222"}}>Existing Inventory</Custombutton>
                 </ButtonWrap>
             </Textwrap>
-            <Image src={model2}></Image>
+            <Image src={`../images/` + getcar[0].image} draggable={false}></Image>
         </Container>
     )
 }
 
-export default home
+export default Home
 
 
 const Container = styled.div`

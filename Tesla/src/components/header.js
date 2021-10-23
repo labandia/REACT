@@ -12,7 +12,8 @@ function header() {
             <Wrapper>
                 <Brandlogo src={tesla} />
                 <Listcontain>
-                    <li>Shop tesla account</li>
+                    <li><Link>Shop </Link></li>
+                    <li><Link>tesla account</Link></li>
                     <Button style={{color: "#222"}}><MenuIcon></MenuIcon></Button>
                 </Listcontain>
             </Wrapper>
@@ -56,7 +57,7 @@ const Listcontain = styled.ul`
 `;
 
 const Link = styled.a`
-    margin: 0;
+    margin: 0 .5em;
     text-decoration: none;
     color: #222;
 `;

@@ -12,14 +12,14 @@ function App() {
   const [burgerstatus, setBurgerStatus] = useState(false);
  
 
-
   return (
     <Maincontainer>
         <Navigation>
             <Wrapper>
                 <Brandlogo src={tesla} />
                 <Listcontain>
-                    <li>Shop tesla account</li>
+                    <li><Link>Shop </Link></li>
+                    <li><Link>tesla account</Link></li>
                     <Button onClick={()=>setBurgerStatus(true)} style={{color: "#222"}}><MenuIcon></MenuIcon></Button>
                 </Listcontain>
             </Wrapper>
@@ -84,8 +84,12 @@ const Listcontain = styled.ul`
     list-style: none;
     li{
         margin: 0 10px;
-        padding: .2em 1em;
+        padding: .1em .5em;
         font-weight: 600;
+        cursor: pointer;
+        &:hover{
+            background: rgba(0,0,0,0.2);
+        }
     }
 `;
 
@@ -139,9 +143,10 @@ const Custombutton = styled(Button)`
     display: flex;
     font-family: "Poppins", sans-serif !important;
     text-transform: capitalize !important;
-    padding: 1em 0 !important;
+    padding: .5em 0 !important;
     color: #222 !important;
     font-size: 1rem !important;
+    margin-bottom: 1em !important;
     &:hover{
         background: #1565c0 !important;
         color: #fff !important;
