@@ -6,7 +6,6 @@ import {useSelector} from 'react-redux';
 
 export function Home() {
     const getcar = useSelector((state)=> state.cars.cars);
-    console.log(getcar[0]);
    
 
     return (

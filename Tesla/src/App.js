@@ -61,11 +61,15 @@ const Navigation = styled.nav`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    padding: 0 1em;
     height: 8vh;
+
+    @media screen(min-width: 600px){
+        padding: 0 10em;
+    }
 `;
 
 const Wrapper = styled.div`
-    max-width: 100rem;
     width: 100%;
     margin: 0 auto;
     display: flex;

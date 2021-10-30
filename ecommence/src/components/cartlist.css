@@ -1,0 +1,87 @@
+.wrapper{
+    position: relative;
+    padding: 3em;
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+.wrapper::before{
+    content: 'Eshopping Cart';
+    position: absolute;
+    font-size: 4rem;
+    top: 90%;
+    font-weight: bold;
+    opacity: .2;
+    left: -8%;
+    transform: rotate(-90deg);
+}
+
+table{
+    width: 100%;
+    max-width: 90rem;
+    margin: 0 auto;
+}
+
+table thead th{
+    border-bottom: 1px solid rgb(204, 204, 204);
+    padding: 1em;
+}
+
+
+th{
+    width: 20%;
+    text-align: left;
+}
+
+tbody{
+    min-height: 20vh;
+    overflow: scroll;
+}
+
+tbody img{
+    width: 80px;
+}
+
+tbody tr td{
+    padding: 1em;
+}
+
+table tbody tr:last-child{
+    border-bottom: 2px solid rgb(204, 204, 204);
+}
+
+.productimage{
+    display: flex;
+    justify-content: center;
+}
+
+.counted{
+    width: 32%;
+}
+
+.counted .num{
+    background: #f5f5f5;
+    padding: .5em 1.5em;
+}
+
+
+
+.totalsales{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 90rem;
+    margin: 1em auto;
+    padding: 1.5em 2em;
+    border: 1px solid rgb(204, 204, 204);
+}
+
+.totalsales  .checkout{
+    padding: 1em 2em !important;
+    background: #222;  
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+}

@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Forms from './components/forms';
+import Hooks from './components/hooks';
 
 function App() {
   return (
     <div className="wrapper">
-        <Forms />
+             <Hooks />
     </div>
   );
 }
