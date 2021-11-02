@@ -8,31 +8,62 @@ import { useState, useEffect } from 'react';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IconButton from '@mui/material/IconButton';
 import {useDispatch, useSelector} from 'react-redux';
-import {loadcategory, loadproduct} from '../state/action/indext'
+import {loadcategory, loadproduct, getCart} from '../state/action/indext'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
 function Productslist() {
 
     const [Selecproduct, setproduct] = useState(false);
 
     const [Oneproduct, setoneproduct] = useState([]);
+    const [open, setOpen] = React.useState(false);
+    const [already, setalready] = React.useState(false);
 
     const [searchproduct, setsearch] = useState('');
 
-    const dispatch = useDispatch();
+    const Dispatch = useDispatch();
 
     const arraylist = useSelector(state => state.products.product)
     const category = useSelector(state => state.category.category)
+    const cart = useSelector(state => state.cart);
 
 
 
     useEffect(() => {
-        dispatch(loadproduct());
-        dispatch(loadcategory());
-    })
+        Dispatch(loadproduct());
+        Dispatch(loadcategory());
+    }, [])
 
  
-  
+    const handleClick = (message) => {
+        if(message === true){
+            setOpen(true);
+        }else{
+            setalready(true);
+        }
+    };
+    
+      const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+      };
+
+
+      const AlreadyClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setalready(false);
+      };
 
    
 
@@ -41,6 +72,20 @@ function Productslist() {
         setoneproduct(item);
     }
 
+
+    const additem =(item)=>{
+       
+        const exist = cart.find((x) => x.id === item.id);
+
+        if(exist){
+            handleClick(false)
+            return false
+        }else{
+            item.quantity = 1;
+            Dispatch(getCart(item))
+            handleClick(true)
+        }
+    }
     
     return (
         <WrapMain>
@@ -118,11 +163,21 @@ function Productslist() {
                         <CardDesc>{Oneproduct.description}</CardDesc>
                         <AddCart>
                                  <Custombutton color="error"><FavoriteBorderIcon></FavoriteBorderIcon></Custombutton>
-                                 <Custombutton onClick={()=>{dispatch({
-                                      type: 'NO_CART',
-                                      payload: Oneproduct
-                                 })}}  style={{padding : '1em 1.5em'}} variant="contained">${Oneproduct.price} Add to Cart</Custombutton>     
+                                 <Custombutton onClick={()=>{additem(Oneproduct)}}  style={{padding : '1em 1.5em'}} variant="contained">${Oneproduct.price} Add to Cart</Custombutton>     
                         </AddCart>
+
+
+                        <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
+                                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                                        Item Added!!!
+                                    </Alert>
+                        </Snackbar>
+
+                        <Snackbar open={already} autoHideDuration={1000} onClose={AlreadyClose}>
+                                    <Alert onClose={AlreadyClose} severity="info" sx={{ width: '100%' }}>
+                                        Item Already Added Check to cart Button!!!
+                                    </Alert>
+                        </Snackbar>
             </ContentSideRight>
         </Content>
     </WrapMain>

@@ -16,10 +16,33 @@ const getcategory = (item) => (
     }
 )
 
+export const getCart = (item) => (
+    {
+        type: types.NO_CART,
+        payload: item
+    }
+)
+
+
+export const updatecart = (index) => (
+    {
+        type: types.INCREMENT,
+        index
+    }
+)
+
+
+export const minuscart = (index) => (
+    {
+        type: types.DECREMENT,
+        index
+    }
+)
+
 
 
 export const loadproduct = () =>{
-    return function async  (dispatch){
+    return function   (dispatch){
         axios.get('https://fakestoreapi.com/products').then((response)=>{
             dispatch(getproduct(response.data));   
         }).catch(error => console.log(error));
@@ -28,7 +51,7 @@ export const loadproduct = () =>{
 
 
 export const loadcategory = () =>{
-    return function async  (dispatch){
+    return function   (dispatch){
         axios.get('https://fakestoreapi.com/products/categories').then((response)=>{
             dispatch(getcategory(response.data));   
         }).catch(error => console.log(error));
@@ -36,7 +59,7 @@ export const loadcategory = () =>{
 }
 
 export const loadcart = () =>{
-    return function async  (dispatch){
+    return function   (dispatch){
         // let cart = JSON.parse(localStorage.getItem('cart'));
         dispatch({
             type: '',

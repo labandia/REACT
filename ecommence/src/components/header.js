@@ -6,10 +6,13 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IconButton from '@mui/material/IconButton';
 import { Link } from 'react-router-dom';
 import {useSelector} from 'react-redux';
-
+import Button from '@mui/material/Button';
+import { useState } from 'react';
 
 function Header() {
     const cart = useSelector(state => state.cart);
+
+    const [islogin] = useState(true)
 
     return (
         <Nav>
@@ -22,16 +25,27 @@ function Header() {
 
             <List>
                 <span>{cart.length}</span>
-                <IconButton aria-label="favorite">
-                    <FavoriteBorderIcon></FavoriteBorderIcon>
-                </IconButton>
+                <Link to='/favorite'>
+                    <IconButton aria-label="favorite">
+                        <FavoriteBorderIcon></FavoriteBorderIcon>
+                    </IconButton>
+                </Link>
+               
                 <Link to='/cartlist'>
                     <Carticon aria-label="shop">
                         <ShoppingBasketOutlinedIcon></ShoppingBasketOutlinedIcon>
                     </Carticon>
                 </Link>
+
+                {islogin 
+                    ?
+                    <Link to='/login' style={{textDecoration:'none', color: '#222'}}>
+                              <Button variant="contained">Sign-up</Button>
+                    </Link>
+                    :<Imageprofile src='https://avatars.dicebear.com/api/male/john.svg'></Imageprofile>
+                }
                 
-                <Imageprofile src='https://avatars.dicebear.com/api/male/john.svg'></Imageprofile>
+                
             </List>
         </Nav>
     )

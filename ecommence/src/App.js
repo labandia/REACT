@@ -4,6 +4,7 @@ import Header from './components/header';
 import Productslist from './components/productslist';
 import Login from './components/login';
 import cartlist from './components/cartlist';
+import favorite  from './components/favorite';
 
 function App() {
  
@@ -14,7 +15,8 @@ function App() {
             <Header></Header>
             <Route path='/' exact component={Productslist} />
             <Route path='/cartlist' component={cartlist} />
-            <Route path='/login' exact component={Login} />
+            <Route path='/login' exact component={Login} />\
+            <Route path='/favorite' exact component={favorite} />
           </div>
       </Router>
   );
