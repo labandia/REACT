@@ -1,20 +1,75 @@
 import React from 'react'
-import styled from 'styled-components'
-import FilterNoneOutlinedIcon from '@mui/icons-material/FilterNoneOutlined';
+import styled, { keyframes } from 'styled-components'
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import { useState, useEffect } from 'react';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import {useDispatch, useSelector} from 'react-redux';
-import {loadcategory, loadproduct, getCart} from '../state/action/indext'
+import {loadcategory, loadproduct, getCart} from '../../state/action/indext'
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { Rating } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
+import Checkbox from '@mui/material/Checkbox';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import './product.css'
+import { TransitionStatus } from "react-transition-group/";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
+
+   const slideInAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  `;
+  
+   const slideOutAnimation = keyframes`
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  `;
+  
+   const slideUpAnimation = keyframes`
+      from {
+          opacity: 0;
+          transform: translateY(100%);
+      }
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  `;
+  
+   const slideDownAnimation = keyframes`
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  `;
+
+
+  const duration = { enter: 500, exit: 300 };
+const STAGGER = 100;
+
 
 function Productslist() {
 
@@ -23,6 +78,7 @@ function Productslist() {
     const [Oneproduct, setoneproduct] = useState([]);
     const [open, setOpen] = React.useState(false);
     const [already, setalready] = React.useState(false);
+    const [rate, setrate] = useState(0);
 
     const [searchproduct, setsearch] = useState('');
 
@@ -31,6 +87,9 @@ function Productslist() {
     const arraylist = useSelector(state => state.products.product)
     const category = useSelector(state => state.category.category)
     const cart = useSelector(state => state.cart);
+
+    const [checked, setChecked] = React.useState(true);
+    
 
 
 
@@ -65,11 +124,17 @@ function Productslist() {
         setalready(false);
       };
 
+
+      const Checkfavorite = (event) => {
+        setChecked(event.target.checked);
+      };
+
    
 
     const getitem = (item) => {
         setproduct(true);
         setoneproduct(item);
+        setrate(item['rating'].rate)
     }
 
 
@@ -89,7 +154,7 @@ function Productslist() {
     
     return (
         <WrapMain>
-        <Sidebar>
+        {/* <Sidebar>
               <SiderHeader>
                   <span>Filter</span>
                   <FilterNoneOutlinedIcon></FilterNoneOutlinedIcon>
@@ -101,14 +166,15 @@ function Productslist() {
 
                   {category && category.map(item=>(
                         <List key={item}>
-                            <input type="checkbox" value={item}></input>
+                            
+                             <Checkbox  defaultChecked />
                             <span>{item}</span>
                         </List>
                     ))}
                     
                   </div>
               </SiderCategory>
-        </Sidebar>
+        </Sidebar> */}
         <Content>
         
             <ContentProducts>
@@ -134,8 +200,8 @@ function Productslist() {
                                 return val
                             }
                             return false;
-                        }).map(list=>(
-                        <Card key={list.id} >
+                        }).map((list, index)=>(
+                            <Card key={list.id} >
                             <img src={list.image} alt={list.title}></img>
                             <p>{list.title}</p>
                             <Cardfooter>
@@ -161,8 +227,17 @@ function Productslist() {
                         <CardCatergory>{Oneproduct.category}</CardCatergory>
                         <h2>{Oneproduct.title}</h2>
                         <CardDesc>{Oneproduct.description}</CardDesc>
+
+                        <Rating
+                            name="text-feedback"
+                            value={rate}
+                            readOnly
+                            precision={0.5}
+                            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                        />
+
                         <AddCart>
-                                 <Custombutton color="error"><FavoriteBorderIcon></FavoriteBorderIcon></Custombutton>
+                                 <Checkbox color="error"  onChange={Checkfavorite}  icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
                                  <Custombutton onClick={()=>{additem(Oneproduct)}}  style={{padding : '1em 1.5em'}} variant="contained">${Oneproduct.price} Add to Cart</Custombutton>     
                         </AddCart>
 
@@ -186,11 +261,33 @@ function Productslist() {
 
 export default Productslist;
 
+const TodoItemCell = styled.div`
+  &.appear,
+  &.enter {
+    animation-name: ${slideInAnimation};
+    animation-duration: ${duration.enter}ms;
+    animation-timing-function: ease-in-out;
+  }
+
+  animation-fill-mode: both;
+
+  &.appear {
+    animation-name: ${slideUpAnimation};
+    animation-delay: ${({ index }) => index * STAGGER}ms;
+  }
+
+  &.exit {
+    animation-name: ${slideOutAnimation};
+    animation-duration: ${duration.exit}ms;
+    animation-timing-function: ease-in-out;
+  }
+`;
+
 
 
 const WrapMain = styled.div`
     display: grid;
-    grid-template-columns: 15% 85%;
+    grid-template-columns: 100%;
     
 `;
 
@@ -248,7 +345,7 @@ const Inputbox = styled.div`
 
 const CardWrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
     gap: 1em;
 `;
 
@@ -256,7 +353,7 @@ const Card = styled.div`
     display: flex;
     width: 100%;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     padding: 2em 2em 1em;
     border: 1px solid #d6d5d5;
@@ -265,13 +362,15 @@ const Card = styled.div`
     img{
         width: 150px;
         height: 150px;
+        margin-inline: auto;
         margin-bottom: 1em;
     }
 
     p{  
         font-weight: 550;
         margin-bottom: .5em;
-        text-align: left;
+        line-height: 1.6;
+        text-align: left !important;
     }
 `;
 
@@ -310,6 +409,8 @@ const CardDesc = styled.p`
     -webkit-line-clamp: 6; /* number of lines to show */
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
+    line-height: 1.8;
+    margin-bottom: 1em;
 `;
 
 const CardCatergory = styled.span`

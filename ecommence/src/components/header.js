@@ -2,17 +2,21 @@ import React from 'react'
 import styled from 'styled-components'
 import logo from '../logo.svg';
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import { Link } from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
+import Checkbox from '@mui/material/Checkbox';
 
 function Header() {
     const cart = useSelector(state => state.cart);
 
-    const [islogin] = useState(true)
+    const [islogin] = useState(false)
+
+   
 
     return (
         <Nav>
@@ -24,17 +28,18 @@ function Header() {
             </Link>
 
             <List>
-                <span>{cart.length}</span>
+               
                 <Link to='/favorite'>
-                    <IconButton aria-label="favorite">
-                        <FavoriteBorderIcon></FavoriteBorderIcon>
-                    </IconButton>
+                    <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
                 </Link>
                
                 <Link to='/cartlist'>
-                    <Carticon aria-label="shop">
-                        <ShoppingBasketOutlinedIcon></ShoppingBasketOutlinedIcon>
-                    </Carticon>
+                        <BtnWrap>
+                                <Carticon aria-label="shop" style={{backgroundColor:"none"}}>
+                                <ShoppingBasketOutlinedIcon></ShoppingBasketOutlinedIcon>
+                            </Carticon>
+                            {cart.length !== 0 && <span style={{backgroundColor:"crimson"}}>{cart.length}</span>}
+                        </BtnWrap>
                 </Link>
 
                 {islogin 
@@ -47,6 +52,8 @@ function Header() {
                 
                 
             </List>
+            
+    
         </Nav>
     )
 }
@@ -112,3 +119,20 @@ const Imageprofile = styled.img`
 const Carticon = styled(IconButton)`
 
 `
+
+const BtnWrap = styled.div`
+    position: relative;
+    span{
+        position: absolute;
+        width: 20px;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        height: 20px;
+        border-radius: 50%;
+        font-size: .8rem;
+        color: #fff;
+        bottom: 0;
+        right: 0;
+    }
+`;

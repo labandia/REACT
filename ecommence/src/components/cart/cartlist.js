@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { useState, useEffect } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import {updatecart, minuscart} from '../state/action/indext'
+import {updatecart, minuscart} from '../../state/action/indext'
 import {useDispatch} from 'react-redux';
 
 function Cartlist() {
@@ -53,15 +53,17 @@ function Cartlist() {
                         <li style={{textAlign: 'start'}}>{item.title}</li>
                         <li>{item.category}</li>
                         <li>{item.price}</li>
-                        <li><Button variant="contained" color='error' onClick={()=>{reducequantity(item)}}><RemoveIcon></RemoveIcon></Button>
-                        {item.quantity}
-                        <Button  variant="contained" color='success' onClick={()=>{addquantity(item)}}><AddIcon></AddIcon></Button></li>
+                        <li>
+                            <Button variant="contained" color='error' onClick={()=>{reducequantity(item)}}><RemoveIcon></RemoveIcon></Button>
+                            <span>{item.quantity}</span>
+                            <Button  variant="contained" color='success' onClick={()=>{addquantity(item)}}><AddIcon></AddIcon></Button>
+                        </li>
                     </Rowdata>
                 )  
             })}
 
             <div className="totalsales">
-                <span>Total:  <strong>{Gtotal}</strong></span>
+                <span>Total: $ <strong>{Gtotal.toFixed(2)}</strong></span>
                 <Button variant="contained" color="primary">Checkout</Button>
             </div>
         </div>
@@ -90,6 +92,9 @@ const Rowdata = styled.div`
     img{
         width: 80px;
         height: 80px;
+    }
+    span{
+        padding: 1em 1.2em;
     }
 `;
 
