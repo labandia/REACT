@@ -1,12 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import Hooks from './components/hooks';
+import Suspense_index from './Suspense/Suspense_index'
 
 function App() {
+
   return (
-    <div className="wrapper">
-             <Hooks />
-    </div>
+    <Suspense_index />
   );
 }
 
