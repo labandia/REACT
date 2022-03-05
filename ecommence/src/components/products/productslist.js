@@ -346,7 +346,7 @@ const Inputbox = styled.div`
 const CardWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
-    gap: 1em;
+    gap: 2.5em;
 `;
 
 const Card = styled.div`
@@ -356,7 +356,7 @@ const Card = styled.div`
     align-items: flex-start;
     flex-direction: column;
     padding: 2em 2em 1em;
-    border: 1px solid #d6d5d5;
+    box-shadow: 3px 1px 10px rgba(0,0,0,0.4);
     border-radius: 10px;
 
     img{
