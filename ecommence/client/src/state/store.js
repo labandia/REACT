@@ -1,19 +1,10 @@
-import { applyMiddleware, createStore, compose} from 'redux';
-import  rootReducer from './reducers/rootreducers';
-import trunk from 'redux-thunk';
+import { applyMiddleware, createStore, compose } from "redux";
+import rootReducer from "./reducers/rootreducers";
+import trunk from "redux-thunk";
 
-
-const store = createStore(
-    rootReducer,
-    {},
-    compose(
-        applyMiddleware(trunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-)
+const store = createStore(rootReducer, {});
 
 export default store;
-
 
 // import { configureStore } from "@reduxjs/toolkit";
 // import userReducer from './reducers/userReducers';
@@ -25,6 +16,5 @@ export default store;
 //         cart: cartreducers
 //     }
 // })
-
 
 // export default store;

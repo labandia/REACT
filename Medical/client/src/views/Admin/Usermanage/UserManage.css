@@ -1,0 +1,40 @@
+.dialogwrapper{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: .5em 0
+  }
+  
+  .dialogactions{
+    width: 100%;
+    padding: .5em;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .dialogwrapper label{
+    font-weight: 600;
+    font-size: .9rem;
+  }
+  
+  .dialogwrapper input{
+    width: 100%;
+    padding: 1em 0;
+    margin: 15px 0;
+  }
+  
+  .dialogwrapper .dialogfullname{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;
+  }
+  
+  .dialogwrapper .dialogInput{
+    width: 100%;
+  }
+  
+  .dialogdeleteactions{
+    display: flex;
+    gap: 1em;
+  }

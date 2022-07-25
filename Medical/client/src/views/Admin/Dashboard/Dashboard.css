@@ -1,0 +1,176 @@
+
+.dash__title{
+    display: flex;
+    align-items: center;
+    color: #626262;
+    padding: 1em 0 0;
+}
+
+.dash__title p{
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.dash__main{
+  display: grid;
+  grid-template-columns: 60% 1fr;
+  gap: 1.5em;
+}
+
+.dash__graph, .dash__salesreport{
+  background: #fff;
+  padding: 1em 2em;
+  border-radius: 10px;
+  box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.028),
+  0 12.5px 10px rgba(0, 0, 0, 0.035),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.042),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+  0 100px 80px rgba(0, 0, 0, 0.07)
+;
+}
+
+.dash__graph p, .dash__sales p{
+  font-size: 1rem;
+  color: #0c47a7;
+  font-weight: var(--font-semi-bold);
+}
+
+.dash__sales{
+    display: grid;
+    grid-template-columns: 55% 1fr;
+    gap: 1.5em;
+    margin-top: 1.5em;
+
+}
+
+
+
+/*
+.dash p{
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.dashmain{
+    display: grid;
+    grid-template-columns: 60% 1fr;
+    gap: 1.5em;
+}
+
+.graph{
+    padding: 2em;
+    background: #fff;
+    border-radius: 10px;
+
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    0 12.5px 10px rgba(0, 0, 0, 0.035),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    0 100px 80px rgba(0, 0, 0, 0.07)
+  ;
+}
+
+.status{
+    background: #fff;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    0 12.5px 10px rgba(0, 0, 0, 0.035),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    0 100px 80px rgba(0, 0, 0, 0.07)
+  ;
+}
+
+
+.graph{
+   position: relative;
+}
+
+.graph p{
+  font-size: 1.2rem;
+  color: #0c47a7;
+  font-weight: 600;
+}
+
+.status p{
+  font-size: 1.2rem;
+  color: #0c47a7;
+}
+
+.sales{
+    display: grid;
+    grid-template-columns: 55% 1fr;
+    gap: 1.5em;
+    margin-top: 2em;
+}
+
+.sales .salesreport{
+    background: #fff;
+    border-radius: 10px;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    0 12.5px 10px rgba(0, 0, 0, 0.035),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    0 100px 80px rgba(0, 0, 0, 0.07)
+  ;
+}
+
+.sales .expires{
+  background: #fff;
+  border-radius: 10px;
+  box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.028),
+  0 12.5px 10px rgba(0, 0, 0, 0.035),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.042),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+  0 100px 80px rgba(0, 0, 0, 0.07)
+;
+}
+
+
+.sales p{
+  font-size: 1.2rem;
+  color: #0c47a7;
+  font-weight: 600;
+} */
+
+@media screen and (max-width: 767px){
+  .dash__title{
+    padding:  0;
+  }
+
+  
+  
+  .dash__main{
+    display: grid;
+    grid-template-columns: 100%;
+    column-gap: 1.5em;
+  }
+
+  .dash__graph, .dash__salesreport{
+    background: #fff;
+    padding: 1.5em;
+  }
+
+  .dash__sales{
+    display: grid;
+    grid-template-columns: 100%;
+    column-gap: 1.5em;
+  }
+}
+
+
+/* For medium devices */
+@media screen and (min-width: 576px){
+
+}

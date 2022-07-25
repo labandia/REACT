@@ -1,0 +1,60 @@
+
+:root{
+
+  /* ====== COLORS ========== */
+  --primary-color: #0c47a7;
+  --light-color: #ECF3F2;
+  --dark-color: #11443f;
+  --Ldark-color: #626262;
+  --bg-color: linear-gradient(315deg, #09c6f9 0%, #045de9 74%);
+  --wbg-color: #fff;
+
+  /* ====== FONTS AND TYPOGRAPHY ========== */
+  --body-font: 'Poppins', sans-serif;
+  --lg-font-size: 3rem;
+  --md-font-size: 1.25rem;
+  --reg-font-size: .938rem;
+  --sm-font-size: .8rem;
+
+  /* ====== FONT WEIGHTS ========== */
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+   /* ====== z-INDEX ========== */
+}
+
+@media screen and (min-width: 1024px) {
+  :root{
+      --lg-font-size: 5.5rem;
+      --md-font-size: 1.5rem;
+      --reg-font-size: 1rem;       
+  }
+}
+
+
+/* ====== BASE ========== */
+*,::before, ::after{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  font-family: var(--body-font);
+  font-size: var(--reg-font-size);
+  background-color: var(--bg-color);
+  /* color: var(--Ldark-color); */
+}
+
+ul{
+  padding: 0;
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+}

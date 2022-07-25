@@ -1,0 +1,135 @@
+
+.medititle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 2em 0 1em;
+    color: #626262;
+}
+
+
+.medititle p{
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 0;
+}
+.medititle button{
+    background: #045de9;
+    color: #fff;
+    border: none;
+    padding: .8em 2.5em;
+    font-family: 'Montserrat', sans-serif ;
+    font-weight: bold;
+    font-size: .9rem;
+    border-radius: 25px;
+}
+
+.medname{
+    display: flex;
+    align-items: center;
+}
+.medname p{
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 0;
+}
+
+select{
+    width: 100%;
+    margin-top: 1em;
+    padding: .8em;
+    font-family: 'Montserrat', sans-serif ;
+}
+
+.tablemain button{
+    background: #045de9;
+    color: #fff;
+    border: none;
+    padding: .8em 2em;
+    font-family: 'Montserrat', sans-serif ;
+    font-weight: bold;
+    font-size: .9rem;
+    border-radius: 10px;
+}
+
+.tableinputs{
+    display: flex;
+    width: 20rem;
+    border-radius: 10px;
+    border: 1px solid #c9c6c6;
+    padding: .7em;
+}
+
+.tableinputs input{
+    background: none;
+    border: none;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+}
+
+.tablewrap{
+    background: #fff;
+    border-radius: 10px;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    0 12.5px 10px rgba(0, 0, 0, 0.035),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    0 100px 80px rgba(0, 0, 0, 0.07)
+  ;
+}
+
+.tablewrap .tablemain{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em 1.5em;
+}
+
+table{
+    width: 100%;
+}
+table thead{
+    width: 100%;
+    background: #f5f5f5;
+}
+
+
+
+table thead th{
+    padding: 1em 0;
+    color: #4e4d4d;
+}
+
+table tbody tr td{
+    padding: 1em 0;
+    border-bottom: 1px solid #f5f5f5;
+    text-align: center;
+}
+table tbody{
+    width: 100%;
+    transition: .5s all;
+}
+
+table tbody tr{
+    cursor: pointer;
+   
+}
+
+table tbody tr:hover{
+    background: #f5f5f5;
+}
+
+@keyframes slidedown {
+    0%{
+        transform: translateY(10%);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

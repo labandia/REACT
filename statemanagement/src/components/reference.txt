@@ -1,0 +1,37 @@
+ const additem = (e) => {
+      e.preventDefault();
+      setnum(num + 1);
+      setlist([
+         ...listitem,
+         {
+            id: num,
+            date:
+               new Date(Date.now()).getHours() +
+               ":" +
+               new Date(Date.now()).getMinutes(),
+            item: name,
+            checked: false,
+         },
+      ]);
+
+      setname("");
+   };
+
+   const deletitem = (id) => {
+      let delitem = listitem.filter((item) => item.id !== id);
+      setlist(delitem);
+   };
+
+   const doneitem = (id) => {
+      let done = listitem.map((item) => {
+         if (item.id === id) {
+            return {
+               ...item,
+               checked: !item.checked,
+            };
+         }
+         return item;
+      });
+
+      setlist(done);
+};
