@@ -1,0 +1,387 @@
+:root {
+   --clr-neon-primary: linear-gradient(to left, #38ef7d, #11998e);
+   --clr-accent-300: radial-gradient(
+         circle at 17% 1%,
+         rgba(198, 198, 198, 0.03) 0%,
+         rgba(198, 198, 198, 0.03) 50%,
+         rgba(42, 42, 42, 0.03) 50%,
+         rgba(42, 42, 42, 0.03) 100%
+      ),
+      radial-gradient(
+         circle at 8% 81%,
+         rgba(253, 253, 253, 0.03) 0%,
+         rgba(253, 253, 253, 0.03) 50%,
+         rgba(36, 36, 36, 0.03) 50%,
+         rgba(36, 36, 36, 0.03) 100%
+      ),
+      radial-gradient(
+         circle at 83% 29%,
+         rgba(164, 164, 164, 0.03) 0%,
+         rgba(164, 164, 164, 0.03) 50%,
+         rgba(60, 60, 60, 0.03) 50%,
+         rgba(60, 60, 60, 0.03) 100%
+      ),
+      radial-gradient(
+         circle at 96% 62%,
+         rgba(170, 170, 170, 0.03) 0%,
+         rgba(170, 170, 170, 0.03) 50%,
+         rgba(169, 169, 169, 0.03) 50%,
+         rgba(169, 169, 169, 0.03) 100%
+      ),
+      linear-gradient(338deg, rgb(2, 141, 213), rgb(5, 172, 81));
+   --clr-secondary: hsl(211, 17%, 74%);
+   --clr-light: rgb(255, 255, 255);
+   --clr-bg: hsl(210, 29%, 9%);
+   --btn-primary: hsl(147, 99%, 30%);
+
+   --ff-primary: "Quicksand", sans-serif;
+   --ff-secondary: "Open sans", sans-serif;
+   --ff-body: var(--ff-primary);
+
+   --fw-light: 300;
+   --fw-regular: 400;
+   --fw-semi-bold: 600;
+   --fw-bold: 700;
+
+   --fs-300: 0.8125rem;
+   --fs-400: 0.875rem;
+   --fs-500: 0.9375rem;
+   --fs-600: 1rem;
+   --fs-700: 1.2rem;
+   --fs-800: 1.5rem;
+   --fs-850: 1.8rem;
+
+   --fs-body: var(--fs-500);
+}
+
+@media screen and(min-width: 50em) {
+   :root {
+      --fs-800: 2rem;
+   }
+}
+
+*,
+*::before,
+*::after {
+   box-sizing: border-box;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   font: inherit;
+}
+
+html:focus-within {
+   scroll-behavior: smooth;
+}
+
+ul[role="list"],
+ol[role="list"] {
+   list-style: none;
+}
+
+a {
+   text-decoration: none;
+}
+
+button {
+   border: none;
+   cursor: pointer;
+}
+
+input {
+   background-color: transparent;
+   border: none;
+   outline: none;
+   color: #fff;
+}
+
+.container {
+   max-width: 1000px;
+   width: 90%;
+   margin: 0 auto;
+}
+
+img {
+   display: block;
+   max-width: 100%;
+}
+
+li {
+   list-style: none;
+   display: inline-block;
+}
+
+.clr-primary {
+   background-color: var(--clr-neon-primary);
+}
+
+.clr-secondary {
+   background-color: var(--clr-secondary);
+}
+
+.clr-light {
+   background-color: var(--clr-light);
+}
+
+.txt-secondary {
+   color: var(--clr-secondary);
+}
+
+.txt-light {
+   color: var(--clr-light);
+}
+
+.fw-bold {
+   font-weight: var(--fw-bold);
+}
+.fw-semi-bold {
+   font-weight: var(--fw-semi-bold);
+}
+.fw-regular {
+   font-weight: var(--fw-regular);
+}
+
+.fw-light {
+   font-weight: var(--fw-light);
+}
+
+.fs-300 {
+   font-size: var(--fs-300);
+}
+.fs-400 {
+   font-size: var(--fs-400);
+}
+.fs-500 {
+   font-size: var(--fs-500);
+}
+.fs-600 {
+   font-size: var(--fs-600);
+}
+.fs-700 {
+   font-size: var(--fs-700);
+}
+
+.fs-800 {
+   font-size: var(--fs-800);
+}
+
+.fs-850 {
+   font-size: var(--fs-850);
+}
+.flex-align {
+   display: flex;
+   align-items: center;
+   gap: 20px;
+}
+
+.flex-space {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 20px;
+}
+
+.flex-center {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.even-columns {
+   display: -ms-grid;
+   display: grid;
+   grid-auto-flow: column;
+   -ms-grid-columns: 1fr;
+   grid-template-columns: 1fr;
+   gap: 1rem;
+}
+
+.col-2 {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+}
+
+.col-3 {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+   gap: 20px;
+}
+
+.col-6 {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(10%, 1fr));
+   gap: 20px;
+}
+
+.main {
+   width: 100%;
+   min-height: 100vh;
+   overflow: hidden;
+}
+
+.front {
+   flex-direction: column;
+   width: 100%;
+   height: 100%;
+   background-image: radial-gradient(
+         circle at 17% 1%,
+         rgba(198, 198, 198, 0.03) 0%,
+         rgba(198, 198, 198, 0.03) 50%,
+         rgba(42, 42, 42, 0.03) 50%,
+         rgba(42, 42, 42, 0.03) 100%
+      ),
+      radial-gradient(
+         circle at 8% 81%,
+         rgba(253, 253, 253, 0.03) 0%,
+         rgba(253, 253, 253, 0.03) 50%,
+         rgba(36, 36, 36, 0.03) 50%,
+         rgba(36, 36, 36, 0.03) 100%
+      ),
+      radial-gradient(
+         circle at 83% 29%,
+         rgba(164, 164, 164, 0.03) 0%,
+         rgba(164, 164, 164, 0.03) 50%,
+         rgba(60, 60, 60, 0.03) 50%,
+         rgba(60, 60, 60, 0.03) 100%
+      ),
+      radial-gradient(
+         circle at 96% 62%,
+         rgba(170, 170, 170, 0.03) 0%,
+         rgba(170, 170, 170, 0.03) 50%,
+         rgba(169, 169, 169, 0.03) 50%,
+         rgba(169, 169, 169, 0.03) 100%
+      ),
+      linear-gradient(338deg, rgb(2, 141, 213), rgb(5, 172, 81));
+   color: #fff;
+}
+
+.front img {
+   height: 120px;
+   margin-bottom: 1em;
+}
+
+.front h1 {
+   font-weight: bold;
+   font-size: 2.2rem;
+   margin-bottom: 1rem;
+}
+.front p {
+   width: 60%;
+   font-family: "Poppins", sans-serif;
+   line-height: 1.6;
+   font-weight: 300;
+   font-size: 0.9rem;
+   text-align: center;
+}
+
+.errmessage {
+   opacity: 1;
+   background-color: hsl(348, 83%, 90%);
+   padding: 0.5em 1em;
+   color: crimson;
+   font-weight: bold;
+   margin-bottom: 1em;
+}
+
+.displaynone {
+   opacity: 0;
+}
+
+.login h1 {
+   font-weight: bold;
+   font-size: 1.4rem;
+   margin-bottom: 2em;
+}
+
+.login .backbtn {
+   width: 40px;
+   height: 40px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #11998e;
+   border-radius: 50%;
+   color: #fff;
+   margin-bottom: 1.5em;
+}
+
+.form {
+   width: 450px;
+}
+.form label {
+   color: #838383;
+   font-weight: 600;
+}
+
+.form input {
+   width: 100%;
+   border: none;
+   border-bottom: 1px solid #bbbbbb;
+   font-size: 1.1rem;
+   margin: 1em 0;
+   outline: none;
+   color: #222;
+   font-weight: 600;
+}
+.form input[type="password"] {
+   color: #11998e;
+}
+
+.form .formsaction {
+   display: flex;
+   align-items: center;
+   gap: 1.5em;
+   margin-top: 1em;
+}
+
+.form button {
+   background-color: #11998e;
+   width: 200px;
+   padding: 1em;
+   color: #fff;
+   border: none;
+   font-weight: 600;
+   border-radius: 25px;
+}
+.form a {
+   color: rgb(61, 61, 61);
+}
+
+.formsaction b {
+   color: #11998e;
+   font-weight: bold;
+   cursor: pointer;
+}
+
+.classwrap {
+   width: 100%;
+   margin-top: 4rem;
+}
+
+.student {
+   width: 100%;
+
+   background-image: var(--clr-accent-300);
+   padding: 2em 0;
+   margin-top: 4rem;
+   color: #fff;
+}
+.student__icon {
+   display: flex;
+   place-items: center;
+   place-content: center;
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   background-color: rgba(77, 77, 77, 0.5);
+}
+.s {
+   width: 100%;
+   background: red !important;
+}
+
+main {
+   padding: 2em 0;
+}
