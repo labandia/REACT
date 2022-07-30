@@ -5,26 +5,17 @@ const cookieParser = require("cookie-parser");
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const mongoose = require("mongoose");
-const connecDB = require("./config/mongo-Conn");
-
-connecDB();
-
+const corsOptions = require("./config/corsOption");
+const credentials = require("./middleware/credienital");
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
-app.use(cors());
+app.use(credentials);
+app.use(cors(corsOptions));
 //middleware for cookies
 app.use(cookieParser());
 
 app.use("/", routes);
 
-// app.listen(process.env.PORT, () => console.log(`Server running on port 5000`));
-
-mongoose.connection.once("open", () => {
-   console.log(`Connected to MongoDB`);
-   app.listen(process.env.PORT, () =>
-      console.log(`Server running on port 5000`)
-   );
-});
+app.listen(process.env.PORT, () => console.log(`Server running on port 5000`));

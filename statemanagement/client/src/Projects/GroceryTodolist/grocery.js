@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Additem, Delitem, checkitem } from "../redux/grocery";
+import { Additem, Delitem, checkitem } from "../../Globalredux/grocery";
 
 function Grocery() {
    const listitem = useSelector((state) => state.grocery.grocery);

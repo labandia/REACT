@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getPhotos } from "../redux/galleryReducer";
+import { getPhotos } from "../Globalredux/galleryReducer";
 import "../index.css";
 import React from "react";
 

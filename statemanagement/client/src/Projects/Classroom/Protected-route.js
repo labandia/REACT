@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children }) => {
    const user = useSelector(status);
    let location = useLocation();
    // let isAuthenticated = JSON.parse(localStorage.getItem("user"));
-   return user === true ? (
+   return user ? (
       children
    ) : (
       <Navigate to="/classroom" state={{ from: location }} />

@@ -5,9 +5,9 @@ import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 // import trunk from "redux-thunk";
-import userReducer from "./redux/User";
-import galleryReducer from "./redux/galleryReducer";
-import groceryReducer from "./redux/grocery";
+import userReducer from "./Globalredux/User";
+import galleryReducer from "./Globalredux/galleryReducer";
+import groceryReducer from "./Globalredux/grocery";
 import AuthReducers from "./Projects/Classroom/redux/auth";
 import { BrowserRouter } from "react-router-dom";
 

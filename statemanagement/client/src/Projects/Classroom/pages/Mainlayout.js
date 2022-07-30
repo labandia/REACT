@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 function Mainlayout() {
    return (
-      <div>
+      <div className="all">
          <Header />
          <section className="classwrap">
             <Outlet />

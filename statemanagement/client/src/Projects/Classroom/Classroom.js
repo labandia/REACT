@@ -24,7 +24,9 @@ function Classroom() {
                activities of face-to-face classes.
             </p>
          </div>
-         {switchpage ? <Login page={page} /> : <Register page={page} />}
+         <div className="mainfront">
+            {switchpage ? <Login page={page} /> : <Register page={page} />}
+         </div>
       </div>
    );
 }

@@ -2,15 +2,15 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCredentials } from "../redux/auth";
-import axios from "axios";
-
-const URL = "http://localhost:5000/loginuser";
+import axios from "../api/axios";
+// import axios from "axios";
 
 function Login({ page }) {
    const userRef = useRef();
    const errRef = useRef();
    const dispatch = useDispatch();
    const location = useNavigate();
+   // const from = location.state?.from?.pathname || "/";
 
    const [username, setuser] = useState("");
    const [password, setpwd] = useState("");
@@ -23,7 +23,7 @@ function Login({ page }) {
 
       try {
          let res = await axios.post(
-            URL,
+            "studentlogin",
             JSON.stringify({ username, password }),
             {
                headers: { "Content-type": "application/json" },
@@ -34,10 +34,12 @@ function Login({ page }) {
             dispatch(
                setCredentials({
                   user: res.data.user,
-                  token: res.data.accesstoken,
+                  token: res.data.token,
                   status: res.data.success,
+                  email: res.data.user.email,
                })
             );
+            localStorage.setItem("users", JSON.stringify(res.data.user));
             location("/main/classes");
             setisloading(false);
             setuser("");

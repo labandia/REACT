@@ -7,7 +7,7 @@ const employeeDB = {
 
 const fsPromises = require("fs").promises;
 const path = require("path");
-const genPassword = require("../../lib/utils").genPassword;
+const genPassword = require("../../middleware/utils").genPassword;
 const { v4: uuidv4 } = require("uuid");
 
 const getallEmployee = (req, res) => {

@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home/Home";
-import Usermain from "./components/usersmain";
-import Grocery from "./components/grocery";
+import Usermain from "./Projects/Usermangament/usersmain";
+import Grocery from "./Projects/GroceryTodolist/grocery";
 import Gallery from "./components/gallery";
 import Mainlayout from "./Projects/Classroom/pages/Mainlayout";
 import Classroom from "./Projects/Classroom/Classroom";
-import Classes from "./Projects/Classroom/pages/Classes";
+import Classes from "./Projects/Classroom/pages/classes/Classes";
 import ProtectedRoute from "./Projects/Classroom/Protected-route";
-import News from "./Projects/Classroom/pages/News";
-import "./index.css";
+import News from "./Projects/Classroom/pages/news/News";
+import Newscontent from "./Projects/Classroom/pages/news/Newscontent";
 
 function App() {
    return (
@@ -29,6 +29,8 @@ function App() {
             }
          >
             <Route path="classes" element={<Classes />} />
+            <Route path="news" element={<News />} />
+            <Route path="newscontent" element={<Newscontent />} />
          </Route>
       </Routes>
    );

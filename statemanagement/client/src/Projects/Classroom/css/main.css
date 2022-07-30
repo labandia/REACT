@@ -98,8 +98,7 @@ input {
 }
 
 .container {
-   max-width: 1000px;
-   width: 90%;
+   width: min(70em, 90%);
    margin: 0 auto;
 }
 
@@ -215,6 +214,18 @@ li {
    gap: 20px;
 }
 
+@media screen and (max-width: 400px) {
+   .col-2 {
+      grid-template-columns: 100%;
+   }
+}
+
+.all {
+   background-color: #ebf3f2;
+   min-height: 100vh;
+   overflow: scroll;
+}
+
 .main {
    width: 100%;
    min-height: 100vh;
@@ -289,6 +300,15 @@ li {
    opacity: 0;
 }
 
+.mainfront {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+   background-color: #fff;
+}
+
 .login h1 {
    font-weight: bold;
    font-size: 1.4rem;
@@ -358,11 +378,11 @@ li {
 .classwrap {
    width: 100%;
    margin-top: 4rem;
+   background-color: #ebf3f2;
 }
 
 .student {
    width: 100%;
-
    background-image: var(--clr-accent-300);
    padding: 2em 0;
    margin-top: 4rem;
@@ -377,11 +397,174 @@ li {
    border-radius: 50%;
    background-color: rgba(77, 77, 77, 0.5);
 }
-.s {
-   width: 100%;
-   background: red !important;
+.flex-align2 {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
+.headericon {
+   font-size: 1.2rem;
 }
 
 main {
    padding: 2em 0;
+}
+
+.classesgrid {
+   padding: 2em 0;
+}
+
+.classesinfo {
+   display: grid;
+   grid-template-columns: 1fr 1fr 2fr;
+   margin-top: 2em;
+}
+
+.classesgrid .classecard {
+   padding: 1.7em;
+   box-shadow: 5px 10px 20px #dddd;
+   background-color: #fff;
+   border-radius: 0.5em;
+   transition: all 0.5s;
+   cursor: pointer;
+}
+.classecard .flex-align {
+   margin-bottom: 1em;
+   gap: 10px;
+}
+
+.classecard h2 {
+   color: hsl(147, 99%, 30%);
+   font-size: 1.1rem;
+}
+
+.classecard img {
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+}
+
+.classesgrid .classecard:hover {
+   transform: scale(1.1);
+}
+
+.newswrap {
+   padding: 2em 0;
+}
+.newscontainer {
+   display: grid;
+   grid-template-columns: 2fr 1.2fr;
+   align-items: flex-start;
+   column-gap: 1.5em;
+   margin-top: 1.5em;
+}
+.newsmain {
+   position: relative;
+   height: 70vh;
+   border-radius: 0.5em;
+}
+
+.newsmain img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   position: absolute;
+   z-index: 0;
+   border-radius: 0.5em;
+}
+
+.backgroundoverlay {
+   position: absolute;
+   inset: 0;
+   border-radius: 0.5em;
+   background-image: linear-gradient(0deg, #222, transparent);
+   z-index: 20;
+}
+
+.newsmain-content {
+   position: absolute;
+   bottom: 0;
+   padding: 1.5em;
+   color: #fff;
+}
+.newsmain-content .flex-align2 {
+   margin: 0.5em 0 1em;
+}
+
+.newsothers {
+   overflow-y: scroll;
+   height: 100%;
+   max-height: 70vh;
+}
+
+.newsothers::-webkit-scrollbar {
+   width: 5px;
+}
+
+.newsothers::-webkit-scrollbar-thumb {
+   background-image: var(--clr-neon-primary);
+   border-radius: 25px;
+}
+
+.newsothers::-webkit-scrollbar-button {
+   height: 5px;
+}
+
+.others__card {
+   display: grid;
+   grid-template-columns: 100px 1fr;
+   column-gap: 1em;
+   align-items: center;
+   margin-bottom: 1em;
+}
+
+.others__card img {
+   width: 100%;
+   height: 100px;
+   object-fit: cover;
+   border-radius: 0.5em;
+}
+
+.others__card h1 {
+   margin-bottom: 0.5em;
+   cursor: pointer;
+}
+.others__card h1:hover {
+   text-decoration: underline;
+}
+
+.newscontent {
+   padding: 3em 0;
+}
+
+.newimgcontainer {
+   width: 50%;
+   float: left;
+   margin: 0 1em 0 0;
+}
+.newimgcontainer img {
+   width: 100%;
+   object-fit: cover;
+   border-radius: 0.5em;
+}
+
+.textwrap .flex-align2 {
+   margin: 0.5em 0 1em;
+}
+
+.textwrap p {
+   line-height: 1.6;
+}
+
+.newcontentwrap {
+}
+
+.newsothers {
+   padding: 1em 0;
+   clear: both;
+}
+
+.newsothers h1 {
+   margin-bottom: 1em;
 }

@@ -1,3 +1,46 @@
+// console.log(userlist[userlist.length - 1]);
+      // dispatch(
+      //    AddUser({
+      //       id: userlist[userlist.length - 1].id + 1,
+      //       name: fullname,
+      //       username,
+      //    })
+      // );
+
+
+
+
+
+
+
+ <div className="Users">
+            <input
+               type="text"
+               style={input}
+               placeholder="name"
+               onChange={(event) => setfullname(event.target.value)}
+            />
+            <input
+               type="text"
+               style={input}
+               placeholder="usernmae"
+               onChange={(event) => setusername(event.target.value)}
+            />
+            <button type="button" onClick={submit}>
+               Add users
+            </button>
+         </div>
+
+
+
+
+
+
+
+
+
+
+
  const additem = (e) => {
       e.preventDefault();
       setnum(num + 1);

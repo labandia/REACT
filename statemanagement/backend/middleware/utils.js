@@ -22,8 +22,6 @@ function validatepassword(password, hash, salt) {
 }
 
 function issueJWT(user, token) {
-   const id = user.user_id;
-
    const expiresIn = "30s";
    let accesstoken = "";
 
@@ -34,7 +32,7 @@ function issueJWT(user, token) {
 
    if (token === true) {
       accesstoken = jsonwebtoken.sign(
-         { username: user.username },
+         { name: user.fname_fld },
          process.env.ACCESS_TOKEN,
          {
             expiresIn: "30s",
@@ -42,7 +40,7 @@ function issueJWT(user, token) {
       );
    } else {
       accesstoken = jsonwebtoken.sign(
-         { username: user.username },
+         { name: user.fname_fld },
          process.env.REFRESH_TOKEN,
          {
             expiresIn: "1d",
@@ -56,7 +54,6 @@ function issueJWT(user, token) {
 
    return {
       token: accesstoken,
-      // token: accesstoken,
       expiresIn: expiresIn,
    };
 }
@@ -69,7 +66,7 @@ function authMiddleware(req, res, next) {
    jsonwebtoken.verify(token, process.env.ACCESS_TOKEN, (err, decoded) => {
       if (err) return res.sendStatus(403);
       //invalid token
-      req.user = decoded.user;
+      req.user = decoded.name;
       next();
    });
 }

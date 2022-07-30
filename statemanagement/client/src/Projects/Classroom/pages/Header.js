@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { logout } from "../redux/auth";
 import "../css/header.css";
 import logo from "../../../images/logo.png";
@@ -32,19 +32,19 @@ function Header() {
                <nav className="primary__navigation flex-align">
                   <ul className="primary__navlist">
                      <li>
-                        <a href="/#" className="nav-active">
+                        <Link to="classes" className="nav-active">
                            Classes
-                        </a>
+                        </Link>
                      </li>
                      <li>
-                        <a href="/#">News</a>
+                        <Link to="news">News</Link>
                      </li>
                      <li>
-                        <a href="/#">Forums</a>
+                        <Link to="classes">Forums</Link>
                      </li>
 
                      <li>
-                        <a href="/#">Ebooks</a>
+                        <Link to="classes">Ebooks</Link>
                      </li>
                   </ul>
                   <i className="bx bxs-grid"></i>
