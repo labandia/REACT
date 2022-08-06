@@ -39,7 +39,6 @@ function Login({ page }) {
                   email: res.data.user.email,
                })
             );
-            localStorage.setItem("users", JSON.stringify(res.data.user));
             location("/main/classes");
             setisloading(false);
             setuser("");

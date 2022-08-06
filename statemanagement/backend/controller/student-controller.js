@@ -1,6 +1,6 @@
-const genPassword = require("../lib/utils").genPassword;
-const validatepassword = require("../lib/utils").validatepassword;
-const issueJWT = require("../lib/utils").issueJWT;
+const genPassword = require("../middleware/utils").genPassword;
+const validatepassword = require("../middleware/utils").validatepassword;
+const issueJWT = require("../middleware/utils").issueJWT;
 const jwt = require("jsonwebtoken");
 const pool = require("../config/mysql-database");
 
@@ -19,6 +19,7 @@ const studenlogin = async (req, res) => {
          "SELECT accounts_tbl.*, students_tbl.* FROM accounts_tbl INNER JOIN students_tbl on accounts_tbl.studnum_fld = students_tbl.studnum_fld WHERE students_tbl.email_fld = ?",
          [username]
       );
+
       if (!user) return res.sendStatus(409); //Unauthorized
 
       const isvalid = validatepassword(
@@ -26,6 +27,7 @@ const studenlogin = async (req, res) => {
          user[0].hashpassword,
          user[0].salt
       );
+
       if (isvalid) {
          // create JWTs
          const tokenobject = issueJWT(user[0], true);
@@ -113,8 +115,6 @@ const refreshtoken = async (req, res) => {
 };
 
 const handleLogout = async (req, res) => {
-   // On client, also delete the accessToken
-
    const cookies = req.cookies;
    if (!cookies?.jwt) return res.sendStatus(204); //No content
    const refreshToken = cookies.jwt;
@@ -135,13 +135,12 @@ const handleLogout = async (req, res) => {
 
    refreshToken = "";
 
-   let result = await pool.query(
+   await pool.query(
       "UPDATE accounts_tbl SET refreshtoken = ? WHERE studnum_fld = ?",
       [refreshToken, user[0].studnum_fld]
    );
 
    // Delete refreshToken in db
-   console.log(result);
 
    res.clearCookie("jwt", { httpOnly: true, sameSite: "None", secure: true });
    res.sendStatus(204);

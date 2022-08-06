@@ -1,16 +1,25 @@
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { currentuser } from "../../redux/auth";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+
+import { currentuser } from "../../redux/auth";
+import { selectedclass } from "../classes/ClassSelectSlice";
 import logo from "../../../../images/logo.png";
 import "../../css/header.css";
 
 function Classes() {
-   const users = useSelector(currentuser);
-   const location = useNavigate();
    const axiosprivate = useAxiosPrivate();
+
+   const users = useSelector(currentuser);
+   const dispatch = useDispatch();
+   const location = useNavigate();
    const [classes, setclasses] = useState([]);
+
+   const selectclass = (data) => {
+      dispatch(selectedclass(data));
+      location(`${data.classcode_fld}`);
+   };
 
    useEffect(() => {
       let ismounted = true;
@@ -37,7 +46,7 @@ function Classes() {
          ismounted = false;
          controller.abort();
       };
-   }, [users]);
+   }, [users, location, axiosprivate]);
 
    return (
       <div>
@@ -87,7 +96,11 @@ function Classes() {
                <div className="classesgrid col-3">
                   {classes.map((stud, index) => {
                      return (
-                        <div className="classecard" key={index}>
+                        <div
+                           className="classecard"
+                           key={index}
+                           onClick={() => selectclass(stud)}
+                        >
                            <div className="flex-align">
                               <img src={logo} alt="" />
                               <p className="fs-500 fw-semi-bold">

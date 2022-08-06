@@ -1,6 +1,76 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import axios from "../../api/axios";
 
 function News() {
+   const [newsdata, setnewsdata] = useState([]);
+
+   useEffect(() => {
+      let ismouted = true;
+      const controller = new AbortController();
+
+      const getnews = async () => {
+         try {
+            const res = await axios.get("getnews");
+
+            if (res.data.success === true) {
+               ismouted && setnewsdata(res.data.payload);
+            }
+         } catch (error) {
+            console.log(error);
+         }
+      };
+
+      getnews();
+
+      return () => {
+         ismouted = false;
+         controller.abort();
+      };
+   }, []);
+
+   const mainnew = newsdata
+      .filter((element, index) => index === 0)
+      .map((data, index) => {
+         return (
+            <div className="newsmain" key={index}>
+               <img
+                  src={`https://images.unsplash.com/photo-1658158509859-34f343915bb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTEwNjQzMQ&ixlib=rb-1.2.1&q=80&w=1080`}
+                  alt=""
+               />
+               <div className="backgroundoverlay">
+                  <div className="newsmain-content">
+                     <h1 className="fw-bold fs-700">{data.title_fld}</h1>
+                     <div className="flex-align2 fs-400">
+                        <i className="bx bx-calendar"></i>
+                        <small>{data.datetime_fld}</small>
+                     </div>
+                     <p className="fs-500">{data.content_fld}</p>
+                  </div>
+               </div>
+            </div>
+         );
+      });
+
+   const others = newsdata
+      .filter((element, index) => index !== 0)
+      .map((data, index) => {
+         return (
+            <div className="others__card" key={index}>
+               <img
+                  src={`https://images.unsplash.com/photo-1657446733019-1d88b949a8e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTA5ODUzMA&ixlib=rb-1.2.1&q=80&w=1080`}
+                  alt=""
+               />
+               <div className="otherscontent">
+                  <h1 className="fw-bold fs-600">{data.title_fld}</h1>
+                  <div className="flex-align2 fs-400">
+                     <i className="bx bx-calendar"></i>
+                     <small> {data.datetime_fld}</small>
+                  </div>
+               </div>
+            </div>
+         );
+      });
+
    return (
       <div className="newswrap">
          <div className="container">
@@ -10,64 +80,8 @@ function News() {
             </div>
 
             <section className="newscontainer">
-               <div className="newsmain">
-                  <img
-                     src={`https://images.unsplash.com/photo-1658158509859-34f343915bb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTEwNjQzMQ&ixlib=rb-1.2.1&q=80&w=1080`}
-                     alt=""
-                  />
-                  <div className="backgroundoverlay">
-                     <div className="newsmain-content">
-                        <h1 className="fw-bold fs-700">
-                           Lorem ipsum dolor sit, amet consectetur adipisicing
-                           elit. Fuga, assumenda.
-                        </h1>
-                        <div className="flex-align2 fs-400">
-                           <i className="bx bx-calendar"></i>
-                           <small>MMM dd, yyyy h:mm a</small>
-                        </div>
-                        <p className="fs-500">
-                           Lorem ipsum dolor sit amet consectetur adipisicing
-                           elit. Hic dolorem sequi culpa aliquam. Repellendus,
-                           aliquam deleniti culpa incidunt qui ullam.
-                        </p>
-                     </div>
-                  </div>
-               </div>
-               <div className="newsothers">
-                  <div className="others__card">
-                     <img
-                        src={`https://images.unsplash.com/photo-1657446733019-1d88b949a8e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTA5ODUzMA&ixlib=rb-1.2.1&q=80&w=1080`}
-                        alt=""
-                     />
-                     <div className="otherscontent">
-                        <h1 className="fw-bold fs-600">
-                           Lorem ipsum dolor sit, amet consectetur adipisicing
-                           elit. Fuga, assumenda.
-                        </h1>
-                        <div className="flex-align2 fs-400">
-                           <i className="bx bx-calendar"></i>
-                           <small>MMM dd, yyyy h:mm a</small>
-                        </div>
-                     </div>
-                  </div>
-
-                  <div className="others__card">
-                     <img
-                        src={`https://images.unsplash.com/photo-1657446733019-1d88b949a8e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTA5ODUzMA&ixlib=rb-1.2.1&q=80&w=1080`}
-                        alt=""
-                     />
-                     <div className="otherscontent">
-                        <h1 className="fw-bold fs-600">
-                           Lorem ipsum dolor sit, amet consectetur adipisicing
-                           elit. Fuga, assumenda.
-                        </h1>
-                        <div className="flex-align2 fs-400">
-                           <i className="bx bx-calendar"></i>
-                           <small>MMM dd, yyyy h:mm a</small>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+               {mainnew}
+               <div className="newsothers">{others}</div>
             </section>
          </div>
       </div>

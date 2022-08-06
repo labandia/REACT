@@ -423,7 +423,7 @@ main {
 
 .classesgrid .classecard {
    padding: 1.7em;
-   box-shadow: 5px 10px 20px #dddd;
+   box-shadow: 5px 10px 20px hsl(145, 23%, 84%);
    background-color: #fff;
    border-radius: 0.5em;
    transition: all 0.5s;
@@ -492,6 +492,16 @@ main {
    margin: 0.5em 0 1em;
 }
 
+.newsmain-content .fs-500 {
+   width: 600px;
+   overflow: hidden;
+   -webkit-line-clamp: 3;
+   -webkit-box-orient: vertical;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   text-align: justify;
+}
+
 .newsothers {
    overflow-y: scroll;
    height: 100%;
@@ -555,9 +565,6 @@ main {
 
 .textwrap p {
    line-height: 1.6;
-}
-
-.newcontentwrap {
 }
 
 .newsothers {

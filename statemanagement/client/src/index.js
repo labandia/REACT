@@ -5,18 +5,20 @@ import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 // import trunk from "redux-thunk";
-import userReducer from "./Globalredux/User";
-import galleryReducer from "./Globalredux/galleryReducer";
-import groceryReducer from "./Globalredux/grocery";
+// import userReducer from "./Globalredux/User";
+// import galleryReducer from "./Globalredux/galleryReducer";
+// import groceryReducer from "./Globalredux/grocery";
 import AuthReducers from "./Projects/Classroom/redux/auth";
+import ClassSelectReducers from "./Projects/Classroom/pages/classes/ClassSelectSlice";
 import { BrowserRouter } from "react-router-dom";
 
 const store = configureStore({
    reducer: {
-      user: userReducer,
-      gallery: galleryReducer,
-      grocery: groceryReducer,
+      // user: userReducer,
+      // gallery: galleryReducer,
+      // grocery: groceryReducer,
       auth: AuthReducers,
+      classes: ClassSelectReducers,
    },
 });
 
