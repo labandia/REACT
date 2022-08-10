@@ -25,13 +25,7 @@ export const getVideoEmbedURL = (content) => {
 
 export const splitFilestring = (filestring) => {
    let arr1 = filestring.split(":");
-   let filearray = [
-      {
-         name: "",
-         link: "",
-         path: "",
-      },
-   ];
+   let filearray = [];
    for (let i = 0; i < arr1.length; i++) {
       let arr2 = arr1[i].split("?");
       filearray.push({
@@ -100,4 +94,89 @@ export const includefiles = (array) => {
    });
 
    return array;
+};
+
+// Start of Elapsed time
+export const getElapsedTime = (time) => {
+   // Record end time
+   let endTime = new Date();
+   let startTime = new Date(time);
+   // Compute time difference in milliseconds
+   let timeDiff = endTime.getTime() - startTime.getTime();
+   // Convert time difference from milliseconds to seconds
+   timeDiff = timeDiff / 1000;
+   // Extract integer seconds that do not form a minute using %
+   let seconds = Math.floor(timeDiff % 60);
+   // Pad seconds with a zero (if necessary) and convert to string
+   let secondsAsString = seconds;
+   // Convert time difference from seconds to minutes using %
+   timeDiff = Math.floor(timeDiff / 60);
+   // Extract integer minutes that don't form an hour using %
+   let minutes = timeDiff % 60;
+   // Pad minutes with a zero (if necessary) and convert to string
+   let minuteAsString = minutes;
+   // Convert time difference from minutes to hours
+   timeDiff = Math.floor(timeDiff / 60);
+   // Extract integer hours that don't form a day using %
+   let hours = timeDiff % 24;
+   // Convert time difference from hours to day
+   timeDiff = Math.floor(timeDiff / 24);
+   // The rest of timeDiff is number of days
+   let days = timeDiff;
+   let totalHours = hours + days * 24; // add days to hours
+   // Pad hours with a zero (if necessary) and convert to string
+   let totalHoursAsString = totalHours;
+   // return secondsAsString
+
+   let month = startTime.toLocaleString("default", { month: "long" });
+   let day = startTime.toLocaleString("default", { day: "numeric" });
+   let yr = startTime.toLocaleString("default", { year: "numeric" });
+   let hr = startTime.toLocaleString("default", { hour: "numeric" });
+   let min = startTime.toLocaleString("default", { minute: "2-digit" });
+   let sec = startTime.toLocaleString("default", { second: "2-digit" });
+
+   if (
+      days <= 0 &&
+      secondsAsString <= 59 &&
+      minuteAsString <= 0 &&
+      totalHoursAsString <= 0
+   ) {
+      return "Just now.";
+   } else if (
+      days <= 0 &&
+      secondsAsString <= 59 &&
+      minuteAsString <= 59 &&
+      totalHoursAsString <= 0
+   ) {
+      return minuteAsString == 1
+         ? `${minuteAsString} minute ago`
+         : `${minuteAsString} minutes ago`;
+   } else if (
+      days <= 0 &&
+      secondsAsString <= 59 &&
+      minuteAsString <= 59 &&
+      totalHoursAsString <= 59
+   ) {
+      return totalHoursAsString == 1
+         ? `${totalHoursAsString} hour ago`
+         : `${totalHoursAsString} hours ago`;
+   } else if (days == 1) {
+      return "1 day ago";
+   } else {
+      return month + " " + day + ", " + yr + " " + hr;
+   }
+};
+
+export const getFileExtension = (filename) => {
+   let name = filename.split(".").pop();
+
+   if (name === "pdf") {
+      return "bxs-file-pdf";
+   } else if (name === "docx") {
+      return "bxs-file-doc";
+   } else if (name === "pptx") {
+      return "bxs-file";
+   } else {
+      return "";
+   }
 };

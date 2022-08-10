@@ -2,16 +2,21 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { logout } from "../redux/auth";
-import "../css/header.css";
 import logo from "../../../images/logo.png";
+import "../css/header.css";
 
 function Header() {
    const location = useNavigate();
    const dispatch = useDispatch();
    const [openmenu, setopenmenu] = useState(false);
+   const [opennavi, setopennavi] = useState(false);
 
    const openhandle = () => {
       setopenmenu(!openmenu);
+   };
+
+   const opennav = () => {
+      setopennavi(!opennavi);
    };
 
    const handlelogout = () => {
@@ -30,7 +35,11 @@ function Header() {
                   </a>
                </div>
                <nav className="primary__navigation flex-align">
-                  <ul className="primary__navlist">
+                  <ul
+                     className={`primary__navlist ${
+                        opennavi ? "activenav" : " "
+                     }`}
+                  >
                      <li>
                         <Link to="classes" className="nav-active">
                            Classes
@@ -46,8 +55,10 @@ function Header() {
                      <li>
                         <Link to="classes">Ebooks</Link>
                      </li>
+
+                     <i onClick={opennav} className="bx bx-x-circle"></i>
                   </ul>
-                  <i className="bx bxs-grid"></i>
+                  <i onClick={opennav} className="bx bxs-grid"></i>
                   <div className="nav__account flex-align">
                      {/* <span>Mr Franklyn</span> */}
                      <div onClick={openhandle} className="nav__imgcontainer">
@@ -55,7 +66,7 @@ function Header() {
                      </div>
                   </div>
 
-                  <div className={`menu fs-500 ${openmenu ? "active" : ""}`}>
+                  {/* <div className={`menu fs-500 ${openmenu ? "active" : ""}`}>
                      <p>Profile Settings</p>
                      <strong className=" fw-bold ">View Profile</strong>
                      <p>Change password</p>
@@ -66,7 +77,7 @@ function Header() {
                      >
                         Logout
                      </button>
-                  </div>
+                  </div> */}
                </nav>
             </div>
          </header>

@@ -7,6 +7,7 @@ import { currentuser } from "../../redux/auth";
 import { selectedclass } from "../classes/ClassSelectSlice";
 import logo from "../../../../images/logo.png";
 import "../../css/header.css";
+import "../../css/classes.css";
 
 function Classes() {
    const axiosprivate = useAxiosPrivate();
@@ -49,7 +50,7 @@ function Classes() {
    }, [users, location, axiosprivate]);
 
    return (
-      <div>
+      <div className="wholewrap">
          <section className="student">
             <div className="container flex-space">
                <div className="student__fullname txt-white">
@@ -87,13 +88,13 @@ function Classes() {
                      <i className="bx bx-slideshow headericon"></i>
                      <h1 className="fw-semi-bold fs-800">My Classes</h1>
                   </div>
-                  <select>
+                  {/* <select>
                      <option value="">Today</option>
                      <option value="">All</option>
-                  </select>
+                  </select> */}
                </div>
 
-               <div className="classesgrid col-3">
+               <div className="classesgrid">
                   {classes.map((stud, index) => {
                      return (
                         <div

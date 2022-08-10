@@ -1,0 +1,79 @@
+.viewactivity {
+   padding: 2em 0;
+   grid-template-columns: 2fr 1fr;
+   column-gap: 3em;
+}
+
+.viewcontentback {
+   font-size: 1.4rem;
+   background-color: transparent;
+}
+
+.viewcontent-title {
+   margin: 1em 0;
+}
+
+.viewcontent-attach {
+   display: grid;
+   grid-template-columns: repeat(4, minmax(30%, 1fr));
+   column-gap: 1em;
+   margin-top: 1em;
+}
+
+.viewcontent-box {
+   background-color: #fff;
+   box-shadow: 2px 2px 5px hsl(145, 23%, 84%);
+   padding: 1em;
+   border-radius: 0.5em;
+   text-align: center;
+}
+
+.viewcontent-teacher {
+   column-gap: 10px;
+}
+
+.viewcontent-details {
+   line-height: 1.8;
+   font-family: "Poppins", sans-serif;
+   font-weight: 300;
+   font-size: 0.925rem;
+}
+
+.viewcontent-box i {
+   font-size: 3rem;
+   margin-bottom: 0.2em;
+}
+
+.viewcontent-img {
+   width: 40px;
+   height: 40px;
+   overflow: hidden;
+   position: relative;
+   border-radius: 50%;
+}
+
+.viewcontent-img img {
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   inset: 0;
+   object-fit: cover;
+   object-position: center;
+}
+
+.studentstatus {
+   background-color: #fff;
+   padding: 1.5em;
+   border-radius: 0.5em;
+   box-shadow: 5px 10px 20px hsl(145, 23%, 84%);
+}
+
+.studentstatus button {
+   width: 100%;
+   padding: 0.6em;
+   border-radius: 0.5em;
+   font-size: 1rem;
+   font-weight: var(--fw-semi-bold);
+   background-color: hsl(147, 99%, 30%);
+   color: #fff;
+}

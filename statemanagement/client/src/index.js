@@ -10,6 +10,8 @@ import { Provider } from "react-redux";
 // import groceryReducer from "./Globalredux/grocery";
 import AuthReducers from "./Projects/Classroom/redux/auth";
 import ClassSelectReducers from "./Projects/Classroom/pages/classes/ClassSelectSlice";
+import PostReducer from "./Projects/Classroom/pages/classes/classpostSlice";
+
 import { BrowserRouter } from "react-router-dom";
 
 const store = configureStore({
@@ -19,6 +21,7 @@ const store = configureStore({
       // grocery: groceryReducer,
       auth: AuthReducers,
       classes: ClassSelectReducers,
+      post: PostReducer,
    },
 });
 

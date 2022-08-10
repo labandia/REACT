@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
+import "../../css/resource.css";
+import { selectedresources } from "../classes/ClassSelectSlice";
 
 const Resources = ({ code }) => {
+   const dispatch = useDispatch();
+   const location = useNavigate();
    const [resource, setresource] = useState([]);
 
    useEffect(() => {
@@ -50,10 +56,21 @@ const Resources = ({ code }) => {
       };
    }, [code]);
 
+   const selectresources = (data) => {
+      dispatch(selectedresources(data));
+      location(`res/${data.rescode_fld}`);
+   };
+
    const resourcedisplay = resource.map((data, index) => {
       return (
-         <div className="resources-card flex-align" key={index}>
-            <i className="bx bx-file"></i>
+         <div
+            onClick={() => {
+               selectresources(data);
+            }}
+            className="resources-card flex-align"
+            key={index}
+         >
+            <i className="bx bxs-file-md"></i>
             <div className="resource-name">
                <p className="fw-semi-bold">{data.title_fld}</p>
                <span className="fs-300">Date: {data.datetime_fld}</span>
@@ -62,7 +79,15 @@ const Resources = ({ code }) => {
       );
    });
 
-   return <div>{resourcedisplay}</div>;
+   return (
+      <div>
+         {resource.length !== 0 ? (
+            <div>{resourcedisplay}</div>
+         ) : (
+            <div>No resources posted! 🧐</div>
+         )}
+      </div>
+   );
 };
 
 export default Resources;

@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { selectedactivity } from "../classes/ClassSelectSlice";
+
 import axios from "../../api/axios";
 import { currentuser } from "../../redux/auth";
+import "../../css/activity.css";
 
 const Activity = ({ code }) => {
+   const dispatch = useDispatch();
+   const location = useNavigate();
+
    const users = useSelector(currentuser);
    const [act, setact] = useState([]);
 
@@ -55,10 +62,25 @@ const Activity = ({ code }) => {
       };
    }, [code, users]);
 
+   const selectactivity = (data) => {
+      dispatch(selectedactivity(data));
+      location(`${data.actcode_fld}`);
+   };
+
    const display = act.map((data, index) => {
       return (
-         <div className="activity-card flex-align" key={index}>
-            <i className="bx bx-file"></i>
+         <div
+            onClick={() => {
+               selectactivity(data);
+            }}
+            className="activity-card flex-align"
+            key={index}
+         >
+            <i
+               className={`bx ${
+                  data.type_fld == 0 ? "bxs-book-content" : "bx-abacus"
+               }`}
+            ></i>
             <div className="activitiy-name">
                <p className="fw-semi-bold">{data.title_fld}</p>
                <span className="fs-300">Deadline: {data.deadline_fld}</span>
@@ -67,7 +89,15 @@ const Activity = ({ code }) => {
       );
    });
 
-   return <div>{display}</div>;
+   return (
+      <div className="activity-wrapper">
+         {act.length !== 0 ? (
+            <div>{display}</div>
+         ) : (
+            <div>No activities/exams posted! 🥱</div>
+         )}
+      </div>
+   );
 };
 
 export default Activity;

@@ -1,15 +1,15 @@
 import React from "react";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
+import "../css/main.css";
 
 function Mainlayout() {
    return (
-      <div className="all">
+      <section className="classwrap">
          <Header />
-         <section className="classwrap">
-            <Outlet />
-         </section>
-      </div>
+
+         <Outlet />
+      </section>
    );
 }
 

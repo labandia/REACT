@@ -1,0 +1,28 @@
+.member {
+   background-color: #fff;
+   box-shadow: 5px 10px 20px hsl(145, 23%, 84%);
+   border-radius: 0.5em;
+   margin-top: 1em;
+   padding: 1em 1.2em;
+}
+
+.member h2 {
+   margin-bottom: 0.5em;
+}
+
+.memberscard {
+   transition: all 0.5s;
+   padding: 0.5em;
+   border-radius: 0.5em;
+   cursor: pointer;
+   column-gap: 10px;
+}
+
+.memberscard .memberimg {
+   width: 40px;
+   height: 40px;
+}
+
+.memberscard:hover {
+   background-color: hsl(0, 0%, 90%);
+}

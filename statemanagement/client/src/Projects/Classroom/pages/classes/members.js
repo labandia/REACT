@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
+import "../../css/member.css";
 
 const Members = ({ open, classcode, ay_fld, sem_fld }) => {
    const [studentdata, setstudentdata] = useState([]);
@@ -81,7 +82,7 @@ const Members = ({ open, classcode, ay_fld, sem_fld }) => {
 
    return (
       <div className="member">
-         <h2 className="fw-bold">Members</h2>
+         <h2 className="fw-bold fs-500">Members</h2>
          {teacherender}
          {studentender}
       </div>

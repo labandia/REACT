@@ -1,9 +1,7 @@
-import { includefiles } from "./postservice";
+import { getElapsedTime, getFileExtension } from "./postservice";
 
 const Postuser = ({ classdata }) => {
-   const newpostdata = includefiles(classdata);
-
-   const post = newpostdata.map((data, index) => {
+   const post = classdata.map((data, index) => {
       return (
          <div className="classpost-content" key={index}>
             <div className="classpost-headername flex-align">
@@ -18,7 +16,7 @@ const Postuser = ({ classdata }) => {
                <div className="fullname">
                   <p className="fw-bold">{data.fullname_fld}</p>
                   <span className="fw-semi-bold fs-400">
-                     {data.datetime_fld}
+                     {getElapsedTime(data.datetime_fld)}
                   </span>
                </div>
 
@@ -30,33 +28,53 @@ const Postuser = ({ classdata }) => {
                <p>{data.content_fld}</p>
             </div>
 
-            {/* <img
-               loading="lazy"
-               className="postimage"
-               src={
-                  "http://localhost:5000/images/1627347505.png"
-                  // data.path
-               }
-               alt=""
-            /> */}
+            {/* FOR DOCS AND PPT FILES */}
+            <div className="filewrapper">
+               {data.attachment_fld.map((file2, index) => {
+                  return (
+                     <div
+                        className="filedisplaycontainer flex-space"
+                        key={index}
+                     >
+                        <div className="filedetails flex-align">
+                           <i
+                              className={`bx ${getFileExtension(file2.name)}`}
+                           ></i>
+                           <div className="filename">
+                              <p className="fw-semi-bold fs-500">
+                                 {file2.name}
+                              </p>
+                              <small></small>
+                           </div>
+                        </div>
+                        <i className="bx bxs-download"></i>
+                     </div>
+                  );
+               })}
+            </div>
 
-            {/* FOR IMAGE VIDEOS */}
-            {/* {data.images_fld.map((data, index)=>{
+            {/* FOR IMAGE FILES */}
+
+            {data.images_fld.map((data2, index) => {
                return (
-                  <div key={index}>
-                     <img src={data.path} alt="" />;
+                  <div className="imgwrapper" key={index}>
+                     <img
+                        src={`http://localhost:5000/images${data2.path}`}
+                        alt={data2.name}
+                        width="100%"
+                     />
                   </div>
                );
-            })} */}
+            })}
 
             {/* FOR YOUTUBE VIDEOS */}
-            {/* {data.embedvideo_fld.length != 0 && (
+            {data.embedvideo_fld.length != 0 && (
                <iframe
                   className="responsive-iframe"
                   loading="lazy"
                   src={data.embedvideo_fld}
                />
-            )} */}
+            )}
 
             <div className="statuscontent fw-bold fs-500">
                <span>{data.commentcount} comments</span>

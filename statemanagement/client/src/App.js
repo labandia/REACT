@@ -8,6 +8,9 @@ import Mainlayout from "./Projects/Classroom/pages/Mainlayout";
 import Classroom from "./Projects/Classroom/Classroom";
 import Classes from "./Projects/Classroom/pages/classes/Classes";
 import Classpost from "./Projects/Classroom/pages/classes/Classpost";
+import ViewActivity from "./Projects/Classroom/pages/classes/ViewActivity";
+import ViewResources from "./Projects/Classroom/pages/classes/ViewResources";
+
 import ProtectedRoute from "./Projects/Classroom/Protected-route";
 import News from "./Projects/Classroom/pages/news/News";
 import Newscontent from "./Projects/Classroom/pages/news/Newscontent";
@@ -16,9 +19,9 @@ function App() {
    return (
       <Routes>
          <Route path="/" element={<Classroom />} />
-         <Route path="/users" element={<Usermain />} />
+         {/* <Route path="/users" element={<Usermain />} />
          <Route path="/grocery" element={<Grocery />} />
-         <Route path="/gallery" element={<Gallery />} />
+         <Route path="/gallery" element={<Gallery />} /> */}
 
          {/* CLASSROOM PROJECT*/}
          <Route path="classroom" element={<Classroom />} />
@@ -32,6 +35,15 @@ function App() {
          >
             <Route path="classes" element={<Classes />} />
             <Route path="classes/:classcode" element={<Classpost />} />
+            <Route
+               path="classes/:classcode/:actcode_fld"
+               element={<ViewActivity />}
+            />
+
+            <Route
+               path="classes/:classcode/res/:rescode_fld"
+               element={<ViewResources />}
+            />
             <Route path="news" element={<News />} />
             <Route path="newscontent" element={<Newscontent />} />
          </Route>

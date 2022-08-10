@@ -1,4 +1,4 @@
-ul {
+/* ul {
    display: grid;
    grid-template-columns: repeat(3, 300px);
    gap: 1.5em;
@@ -45,4 +45,4 @@ ul span {
    min-height: 20vh;
    color: #fff;
    background: linear-gradient(-225deg, #ac32e4 0%, #7918f2 48%, #4801ff 100%);
-}
+} */

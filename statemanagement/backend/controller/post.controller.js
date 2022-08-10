@@ -26,7 +26,7 @@ const uploadfiles = async (req, res) => {
    let array = [];
 
    files.forEach((element) => {
-      let a = `${element.originalname} ? ${element.path}`;
+      let a = `${element.originalname}?${element.path.replace("uploads", "")}`;
       array.push(a);
    });
 
@@ -56,7 +56,12 @@ const classpost = async (req, res) => {
          ]
       );
 
-      res.status(200).json({ message: "post added" });
+      const [data] = await pool.query(
+         "SELECT *, IFNULL((SELECT profilepic_fld FROM students_tbl WHERE studnum_fld=classpost_tbl.authorid_fld), (SELECT profilepic_fld FROM personnel_tbl WHERE empcode_fld=classpost_tbl.authorid_fld)) AS profilepic_fld, IFNULL((SELECT CONCAT(fname_fld,' ',lname_fld) FROM students_tbl WHERE studnum_fld=classpost_tbl.authorid_fld), (SELECT CONCAT(fname_fld,' ',lname_fld) FROM personnel_tbl WHERE empcode_fld=classpost_tbl.authorid_fld))AS fullname_fld, (SELECT COUNT(commentcode_fld) FROM classcomments_tbl WHERE actioncode_fld = classpost_tbl.postcode_fld AND isdeleted_fld = 0) AS commentcount FROM classpost_tbl WHERE classcode_fld=? AND isdeleted_fld=0 ORDER BY datetime_fld DESC LIMIT 1",
+         [classcode_fld]
+      );
+
+      res.status(200).json({ message: "post added", payload: data[0] });
    } catch (error) {
       res.status(500).json({ message: error });
    }

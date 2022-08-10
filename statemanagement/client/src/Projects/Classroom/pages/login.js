@@ -79,7 +79,7 @@ function Login({ page }) {
             <i className="bx bxs-error-circle"></i>
             <p>{errMsg}</p>
          </div>
-         <h1>Login your credentials</h1>
+         <h1 className="fw-semi-bold">Login your credentials</h1>
          <form onSubmit={handlesubmit} className="form">
             <div className="formgroup">
                <label htmlFor="username">Domain Email:</label>
@@ -117,7 +117,7 @@ function Login({ page }) {
                         Loading...
                      </span>
                   ) : (
-                     <span>Sign in</span>
+                     <span className="fs-500 fw-semi-bold">Sign in</span>
                   )}
                </button>
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "../../api/axios";
+import "../../css/news.css";
 
 function News() {
    const [newsdata, setnewsdata] = useState([]);
@@ -33,19 +34,21 @@ function News() {
       .map((data, index) => {
          return (
             <div className="newsmain" key={index}>
-               <img
-                  src={`https://images.unsplash.com/photo-1658158509859-34f343915bb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTEwNjQzMQ&ixlib=rb-1.2.1&q=80&w=1080`}
-                  alt=""
-               />
-               <div className="backgroundoverlay">
-                  <div className="newsmain-content">
-                     <h1 className="fw-bold fs-700">{data.title_fld}</h1>
+               <div className="newsimgcontainer">
+                  <img
+                     src={`https://images.unsplash.com/photo-1658158509859-34f343915bb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTEwNjQzMQ&ixlib=rb-1.2.1&q=80&w=1080`}
+                     alt=""
+                  />
+               </div>
+               <div className="newsmain-content flex-space">
+                  <div className="newstitle">
                      <div className="flex-align2 fs-400">
                         <i className="bx bx-calendar"></i>
-                        <small>{data.datetime_fld}</small>
+                        <span className="fs-300">{data.datetime_fld}</span>
                      </div>
-                     <p className="fs-500">{data.content_fld}</p>
+                     <h1 className="fw-bold fs-700">{data.title_fld}</h1>
                   </div>
+                  <button>Check to see the full details</button>
                </div>
             </div>
          );
@@ -64,7 +67,7 @@ function News() {
                   <h1 className="fw-bold fs-600">{data.title_fld}</h1>
                   <div className="flex-align2 fs-400">
                      <i className="bx bx-calendar"></i>
-                     <small> {data.datetime_fld}</small>
+                     <span className="fs-300"> {data.datetime_fld}</span>
                   </div>
                </div>
             </div>

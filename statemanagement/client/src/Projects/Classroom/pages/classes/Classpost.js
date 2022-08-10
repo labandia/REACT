@@ -1,31 +1,37 @@
 import { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
-import { classesdata } from "../classes/ClassSelectSlice";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { Filepath, getfileExt } from "./uploadserves";
+
+import { currentuser } from "../../redux/auth";
+import { classesdata } from "../classes/ClassSelectSlice";
+import { fetchposts, postdata, addposts } from "../classes/classpostSlice";
+
 import Postuser from "./Postuser";
 import Members from "./members";
 import Resources from "./resources";
 import Chatbase from "./chatbase";
-import { currentuser } from "../../redux/auth";
 import Activity from "./activity";
-import axios from "../../api/axios";
-import { sampleExternal, Filepath, getfileExt } from "./uploadserves";
-import "../../css/classes.css";
+
+import "../../css/classpost.css";
 
 const Classpost = () => {
-   const fileRef = useRef();
-
    const { classcode } = useParams();
-   const [classdata, setclassdata] = useState([]);
+
+   const dispatch = useDispatch();
+   const classinfo = useSelector(classesdata);
+   const users = useSelector(currentuser);
+
+   const post = useSelector(postdata);
+
+   const ImageRef = useRef();
+   const fileRef = useRef();
+   const VideoRef = useRef();
+
    const [selectmen, setselectmember] = useState(false);
 
    const [selectedFile, setSelectedFile] = useState([]);
    const [isFilePicked, setIsFilePicked] = useState(0);
-
-   let filesupload = [];
-
-   const classinfo = useSelector(classesdata);
-   const users = useSelector(currentuser);
    const [content, setcontent] = useState("");
 
    const contentonchanged = (e) => setcontent(e.target.value);
@@ -36,37 +42,19 @@ const Classpost = () => {
    };
 
    useEffect(() => {
-      let ismouted = true;
       const controller = new AbortController();
 
-      const info = async (code) => {
-         try {
-            let res = await axios.get(`getpost/${code}`);
-            if (res.data.success === true) {
-               ismouted && setclassdata(res.data.payload);
-               //  ismouted && setdata(res.data.payload);
-            }
-         } catch (error) {
-            console.log(error);
-         }
-      };
-
-      info(classcode);
+      dispatch(fetchposts(classcode));
 
       return () => {
-         ismouted = false;
          controller.abort();
       };
-   }, [classcode]);
+   }, [classcode, dispatch]);
 
    const savepostdata = async () => {
-      if (!content) return alert("Input a text first");
-
       let filepath = "";
       if (isFilePicked !== 0) {
          filepath = await Filepath(selectedFile, users.id);
-      } else {
-         filepath = "";
       }
 
       let load = {
@@ -86,19 +74,23 @@ const Classpost = () => {
       };
 
       try {
-         let res = await axios.post("posdata", load, {
-            withCredentials: true,
-         });
-         console.log(res.data.message);
+         dispatch(addposts(load)).unwrap();
       } catch (error) {
          console.log(error);
       }
+
+      setcontent("");
+      setSelectedFile([]);
    };
 
    const filehandler = (e) => {
       e.preventDefault();
       let filesupload = e.target.files;
-      setSelectedFile(filesupload);
+
+      for (let i = 0; i < e.target.files.length; i++) {
+         selectedFile.push(e.target.files[i]);
+      }
+
       for (let i = 0; i < filesupload.length; i++) {
          let ext = getfileExt(filesupload[i].name);
          switch (ext) {
@@ -112,7 +104,6 @@ const Classpost = () => {
             case "xls":
             case "xlsx":
             case "ods":
-            case "pdf":
             case "ppt":
             case "pptx":
                setIsFilePicked(5);
@@ -132,7 +123,16 @@ const Classpost = () => {
                break;
          }
       }
+
+      setSelectedFile([...selectedFile]);
    };
+
+   const removeFilePreviews = (i) => {
+      selectedFile.splice(i, 1);
+      setSelectedFile([...selectedFile]);
+   };
+
+   const cansave = Boolean(content) && Boolean(selectedFile);
 
    return (
       <div className="container classpostwrap">
@@ -189,43 +189,97 @@ const Classpost = () => {
                   <div className="classpost-actions flex-space">
                      <div className="icons-actions flex-align">
                         <input
+                           ref={ImageRef}
+                           onChange={filehandler}
+                           multiple={true}
+                           type="file"
+                           accept="image/png, image/gif, image/jpeg"
+                           hidden
+                        />
+                        <button
+                           className="image"
+                           onClick={() => ImageRef.current.click()}
+                        >
+                           <i className="bx bx-image-add"></i>
+                           <span>Images</span>
+                        </button>
+
+                        <input
                            ref={fileRef}
                            onChange={filehandler}
                            multiple={true}
                            type="file"
+                           accept=".pdf,.docx, .doc"
                            hidden
                         />
-                        <button onClick={() => fileRef.current.click()}>
-                           <i className="bx bx-image-add"></i>
-                        </button>
-                        <button>
+                        <button
+                           className="files"
+                           onClick={() => fileRef.current.click()}
+                        >
                            <i className="bx bx-file"></i>
+                           <span>Files</span>
                         </button>
-                        <button>
+
+                        <input
+                           ref={VideoRef}
+                           onChange={filehandler}
+                           multiple={true}
+                           type="file"
+                           accept="video/mp4,video/x-m4v,video/*"
+                           hidden
+                        />
+                        <button
+                           className="vid"
+                           onClick={() => VideoRef.current.click()}
+                        >
                            <i className="bx bx-video-plus"></i>
+                           <span>Videos</span>
                         </button>
                      </div>
 
                      <button
                         onClick={savepostdata}
                         className="send fw-semi-bold"
+                        disabled={!cansave}
                      >
                         <i className="bx bx-pencil"></i>Send
                      </button>
                   </div>
+
+                  <div className="filecontainer">
+                     {selectedFile.map((file2, index) => {
+                        return (
+                           <div className="fileuploads flex-space" key={index}>
+                              <div className="filedetails flex-align">
+                                 <i className="bx bxs-file-pdf"></i>
+                                 <div className="filename">
+                                    <p className="fw-semi-bold">{file2.name}</p>
+                                    <small>docs</small>
+                                 </div>
+                              </div>
+                              <i
+                                 onClick={() => {
+                                    removeFilePreviews(index);
+                                 }}
+                                 className="bx bx-x-circle"
+                              ></i>
+                           </div>
+                        );
+                     })}
+                  </div>
                </div>
 
-               <Postuser classdata={classdata} />
+               <Postuser classdata={post} />
             </div>
 
             <div className="classpost-media">
                <div className="classpost-activity">
-                  <h2 className="fw-bold">Activity</h2>
+                  <h2 className="fw-bold fs-600">Activity</h2>
                   <Activity code={classinfo.classcode_fld} />
                </div>
 
                <div className="classpost-resources">
-                  <h2 className="fw-bold">Materials</h2>
+                  <h2 className="fw-bold fs-600">Materials</h2>
                   <Resources code={classinfo.classcode_fld} />
                </div>
             </div>
