@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { selectednew } from "../../redux/newsSlice";
 import axios from "../../api/axios";
 import "../../css/news.css";
 
 function News() {
    const [newsdata, setnewsdata] = useState([]);
+   const location = useNavigate();
+   const dispatch = useDispatch();
 
    useEffect(() => {
       let ismouted = true;
@@ -12,7 +17,7 @@ function News() {
       const getnews = async () => {
          try {
             const res = await axios.get("getnews");
-
+            console.log(res.data.payload);
             if (res.data.success === true) {
                ismouted && setnewsdata(res.data.payload);
             }
@@ -28,6 +33,11 @@ function News() {
          controller.abort();
       };
    }, []);
+
+   const details = (array) => {
+      dispatch(selectednew(array));
+      location(`newscontent`);
+   };
 
    const mainnew = newsdata
       .filter((element, index) => index === 0)
@@ -48,7 +58,13 @@ function News() {
                      </div>
                      <h1 className="fw-bold fs-700">{data.title_fld}</h1>
                   </div>
-                  <button>Check to see the full details</button>
+                  <button
+                     onClick={() => {
+                        details(data);
+                     }}
+                  >
+                     Check to see the full details
+                  </button>
                </div>
             </div>
          );
@@ -64,10 +80,17 @@ function News() {
                   alt=""
                />
                <div className="otherscontent">
-                  <h1 className="fw-bold fs-600">{data.title_fld}</h1>
+                  <h1
+                     className="fw-bold fs-600"
+                     onClick={() => {
+                        details(data);
+                     }}
+                  >
+                     {data.title_fld}
+                  </h1>
                   <div className="flex-align2 fs-400">
                      <i className="bx bx-calendar"></i>
-                     <span className="fs-300"> {data.datetime_fld}</span>
+                     <span className="fs-400"> {data.datetime_fld}</span>
                   </div>
                </div>
             </div>

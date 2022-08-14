@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 // import galleryReducer from "./Globalredux/galleryReducer";
 // import groceryReducer from "./Globalredux/grocery";
 import AuthReducers from "./Projects/Classroom/redux/auth";
+import NewsReducers from "./Projects/Classroom/redux/newsSlice";
 import ClassSelectReducers from "./Projects/Classroom/pages/classes/ClassSelectSlice";
 import PostReducer from "./Projects/Classroom/pages/classes/classpostSlice";
 
@@ -22,6 +23,7 @@ const store = configureStore({
       auth: AuthReducers,
       classes: ClassSelectReducers,
       post: PostReducer,
+      news: NewsReducers,
    },
 });
 

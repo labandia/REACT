@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 // import Home from "./Home/Home";
 import Usermain from "./Projects/Usermangament/usersmain";
 import Grocery from "./Projects/GroceryTodolist/grocery";
+import Newanim from "./Projects/animations/newanim";
 // import Uploadsite from "./Projects/Uploadimage/Uploadsite";
 import Gallery from "./components/gallery";
 import Mainlayout from "./Projects/Classroom/pages/Mainlayout";
@@ -22,7 +23,7 @@ function App() {
          {/* <Route path="/users" element={<Usermain />} />
          <Route path="/grocery" element={<Grocery />} />
          <Route path="/gallery" element={<Gallery />} /> */}
-
+         <Route path="/anime" element={<Newanim />} />
          {/* CLASSROOM PROJECT*/}
          <Route path="classroom" element={<Classroom />} />
          <Route
@@ -45,7 +46,7 @@ function App() {
                element={<ViewResources />}
             />
             <Route path="news" element={<News />} />
-            <Route path="newscontent" element={<Newscontent />} />
+            <Route path="news/newscontent" element={<Newscontent />} />
          </Route>
       </Routes>
    );
