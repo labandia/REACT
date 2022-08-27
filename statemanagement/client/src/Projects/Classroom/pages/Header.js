@@ -66,7 +66,7 @@ function Header() {
                      </div>
                   </div>
 
-                  {/* <div className={`menu fs-500 ${openmenu ? "active" : ""}`}>
+                  <div className={`menu fs-500 ${openmenu ? "active" : ""}`}>
                      <p>Profile Settings</p>
                      <strong className=" fw-bold ">View Profile</strong>
                      <p>Change password</p>
@@ -77,7 +77,7 @@ function Header() {
                      >
                         Logout
                      </button>
-                  </div> */}
+                  </div>
                </nav>
             </div>
          </header>
